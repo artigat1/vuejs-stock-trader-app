@@ -1,48 +1,48 @@
 ﻿<template>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <router-link class="navbar-brand" to="/">Stock Trader</router-link>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <router-link class="navbar-brand" to="/">Stock Trader</router-link>
+            </div>
 
-        <div class="collapse navbar-collapse" id="navbar">
-            <ul class="navbar-nav mr-auto">
-                <router-link tag="li" class="nav-item" to="/portfolio" active-class="active">
-                    <a class="nav-link">Portfolio</a>
-                </router-link>
-                <router-link tag="li" class="nav-item" to="/stocks" active-class="active">
-                    <a class="nav-link">Stocks</a>
-                </router-link>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="nav-item">
-                    <a class="nav-link" href="#" tabindex="-1">End Day</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" 
-                       href="#" 
-                       id="navbarDropdown" 
-                       role="button" 
-                       data-toggle="dropdown" 
-                       aria-haspopup="true" 
-                       aria-expanded="false">
-                        Save & Load
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Save Data</a>
-                        <a class="dropdown-item" href="#">Load Data</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <router-link tag="li" active-class="active" to="/portfolio"><a>Portfolio</a></router-link>
+                    <router-link tag="li" active-class="active" to="/stocks"><a>Stocks</a></router-link>
+                </ul>
+                
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">End Day</a></li>
+                    <li class="dropdown">
+                        <a href="#" 
+                           class="dropdown-toggle" 
+                           data-toggle="dropdown" 
+                           role="button" 
+                           aria-haspopup="true" 
+                           aria-expanded="false">
+                            Save & Load <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Save Data</a></li>
+                            <li><a href="#">Load Data</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
     </nav>
 </template>
 
 <script>
-    export default {
-        name: 'Header',
+  export default {
+    name: 'Header',
 
-        data() {
-            return {}
-        },
-    }
+    data() {
+      return {}
+    },
+  }
 </script>
 
 <style scoped>
