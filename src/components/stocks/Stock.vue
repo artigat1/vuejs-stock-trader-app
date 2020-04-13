@@ -3,16 +3,18 @@
         <div class="panel panel-success">
             <div class="panel-heading">
                 <h3 class="panel-title">
-                    NAME
-                    <small>(Price: PRICE)</small>
+                    {{ stock.name }}
+                    <small>(Price: {{ stock.price }})</small>
                 </h3>
             </div>
             <div class="panel-body">
                 <div class="pull-left">
-                    <input class="form-control" placeholder="Quantity" type="number"/>
+                    <input v-model="quantity" class="form-control" placeholder="Quantity" type="number"/>
                 </div>
                 <div class="pull-right">
-                    <button class="btn btn-success">Buy</button>
+                    <button class="btn btn-success" 
+                            @click="buyStock" 
+                            :disabled="!isAbleToBuy">Buy</button>
                 </div>
             </div>
         </div>
@@ -24,10 +26,31 @@
     name: 'Stock',
 
     props: ['stock'],
-    
+
     data() {
-      return {}
+      return {
+        quantity: 0,
+      }
     },
+    
+    computed: {
+      isAbleToBuy() {
+        return this.quantity > 0 && parseInt(this.quantity)
+      }
+    },
+    
+    methods: {
+      buyStock() {
+        const order = {
+          stockId: this.stock.id,
+          stockPrice: this.stock.price,
+          quantity: this.quantity,
+        }
+        
+        console.log(order)
+        this.quantity = 0
+      },
+    }
   }
 </script>
 
