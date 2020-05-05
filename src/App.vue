@@ -10,22 +10,26 @@
 </template>
 
 <script>
-  import Header from './components/Header.vue'
+    import Header from './components/Header.vue'
 
-  export default {
-    name: 'App',
+    export default {
+        name: 'App',
 
-    components: {
-      appHeader: Header,
-    },
-  }
+        components: {
+            appHeader: Header,
+        },
+
+        created() {
+            this.$store.dispatch('initStocks')
+        }
+    }
 </script>
 
 <style>
     body {
         padding: 30px;
     }
-    
+
     h2 {
         padding: .75em 0;
     }
