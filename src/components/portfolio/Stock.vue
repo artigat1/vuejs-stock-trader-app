@@ -1,6 +1,6 @@
 ﻿<template>
     <div class="col-sm-6 col-md-4">
-        <div class="panel panel-success">
+        <div class="panel panel-info">
             <div class="panel-heading">
                 <h3 class="panel-title">
                     {{ stock.name }}
@@ -12,7 +12,7 @@
                     <input class="form-control" placeholder="Quantity" type="number" v-model="quantity" />
                 </div>
                 <div class="pull-right">
-                    <button :disabled="quantity <= 0 || !Number.isInteger(quantity)"
+                    <button :disabled="!canSell"
                             @click="sellStock"
                             class="btn btn-success">Sell
                     </button>
@@ -36,10 +36,16 @@
             }
         },
 
+        computed: {
+            canSell() {
+                return this.quantity <= 0 || !Number.isInteger(this.quantity)
+            }
+        },
+
         methods: {
-            ...mapActions([
-                'sellStock',
-            ]),
+            ...mapActions({
+                placeSellOrder: 'sellStock'
+            }),
 
             sellStock() {
                 const order = {
@@ -48,7 +54,8 @@
                     quantity: this.quantity,
                 }
 
-                this.sellStock(order)
+                this.placeSellOrder(order)
+                this.quantity = 0
             },
         }
     }
