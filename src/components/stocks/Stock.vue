@@ -9,12 +9,13 @@
             </div>
             <div class="panel-body">
                 <div class="pull-left">
-                    <input v-model="quantity" class="form-control" placeholder="Quantity" type="number"/>
+                    <input class="form-control" placeholder="Quantity" type="number" v-model="quantity" />
                 </div>
                 <div class="pull-right">
-                    <button class="btn btn-success" 
-                            @click="buyStock" 
-                            :disabled="!isAbleToBuy">Buy</button>
+                    <button :disabled="!isAbleToBuy"
+                            @click="buyStock"
+                            class="btn btn-success">Buy
+                    </button>
                 </div>
             </div>
         </div>
@@ -22,36 +23,36 @@
 </template>
 
 <script>
-  export default {
-    name: 'Stock',
+    export default {
+        name: 'Stock',
 
-    props: ['stock'],
+        props: ['stock'],
 
-    data() {
-      return {
-        quantity: 0,
-      }
-    },
-    
-    computed: {
-      isAbleToBuy() {
-        return this.quantity > 0 && parseInt(this.quantity)
-      }
-    },
-    
-    methods: {
-      buyStock() {
-        const order = {
-          stockId: this.stock.id,
-          stockPrice: this.stock.price,
-          quantity: this.quantity,
+        data() {
+            return {
+                quantity: 0,
+            }
+        },
+
+        computed: {
+            isAbleToBuy() {
+                return this.quantity > 0 && parseInt(this.quantity)
+            }
+        },
+
+        methods: {
+            buyStock() {
+                const order = {
+                    stockId: this.stock.id,
+                    stockPrice: this.stock.price,
+                    quantity: this.quantity,
+                }
+
+                this.$store.dispatch('buyStock', order)
+                this.quantity = 0
+            },
         }
-        
-        console.log(order)
-        this.quantity = 0
-      },
     }
-  }
 </script>
 
 <style scoped>
