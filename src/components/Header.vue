@@ -9,19 +9,21 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <router-link tag="li" active-class="active" to="/portfolio"><a>Portfolio</a></router-link>
-                    <router-link tag="li" active-class="active" to="/stocks"><a>Stocks</a></router-link>
+                    <router-link active-class="active" tag="li" to="/portfolio"><a>Portfolio</a></router-link>
+                    <router-link active-class="active" tag="li" to="/stocks"><a>Stocks</a></router-link>
                 </ul>
-                
+
+                <strong class="navbar-text navbar-right">Funds: £{{ funds }}</strong>
+
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">End Day</a></li>
                     <li class="dropdown">
-                        <a href="#" 
-                           class="dropdown-toggle" 
-                           data-toggle="dropdown" 
-                           role="button" 
-                           aria-haspopup="true" 
-                           aria-expanded="false">
+                        <a aria-expanded="false"
+                           aria-haspopup="true"
+                           class="dropdown-toggle"
+                           data-toggle="dropdown"
+                           href="#"
+                           role="button">
                             Save & Load <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
@@ -36,13 +38,19 @@
 </template>
 
 <script>
-  export default {
-    name: 'Header',
+    export default {
+        name: 'Header',
 
-    data() {
-      return {}
-    },
-  }
+        data() {
+            return {}
+        },
+
+        computed: {
+            funds() {
+                return this.$store.getters.funds
+            }
+        }
+    }
 </script>
 
 <style scoped>

@@ -19,7 +19,7 @@ const mutations = {
 
     'SELL_STOCK'(state, { stockId, quantity, stockPrice }) {
         const record = state.stocks.find(element => element.id = stockId)
-        if (record.quantity > quantity) {
+        if (parseInt(record.quantity) > quantity) {
             record.quantity -= quantity
         } else {
             state.stocks.splice(state.stocks.indexOf(record), 1)
@@ -41,7 +41,7 @@ const getters = {
             return {
                 id: stock.id,
                 quantity: stock.quantity,
-                name: record.price,
+                price: record.price,
             }
         })
     },
