@@ -29,7 +29,7 @@ const actions = {
 }
 
 const getters = {
-    stocks: state => state.stocks,
+    getAllStocks: state => state.stocks,
 }
 
 export default {

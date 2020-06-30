@@ -4,18 +4,18 @@
     </div>
 </template>
 
-<script>    
+<script>
     import Stock from './Stock.vue'
 
     export default {
         name: 'Stocks',
-      
+
         computed: {
             stocks() {
-                return this.$store.getters.stocks.stocks
+                return this.$store.getters.getAllStocks.stocks
             }
         },
-        
+
         components: {
             appStock: Stock,
         }
