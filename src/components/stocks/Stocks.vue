@@ -12,7 +12,7 @@
 
         computed: {
             stocks() {
-                return this.$store.getters.getAllStocks.stocks
+                return this.$store.getters.getAllStocks
             }
         },
 

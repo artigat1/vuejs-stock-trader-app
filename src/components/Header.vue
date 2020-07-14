@@ -29,7 +29,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a @click="saveData" href="#">Save Data</a></li>
-                            <li><a href="#">Load Data</a></li>
+                            <li><a @click="loadData" href="#">Load Data</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -57,9 +57,10 @@
         },
 
         methods: {
-            ...mapActions([
-                'randomiseStocks'
-            ]),
+            ...mapActions({
+                randomiseStocks: 'randomiseStocks',
+                fetchData: 'loadData',
+            }),
 
             endDay() {
                 this.randomiseStocks()
@@ -69,10 +70,16 @@
                 const data = {
                     funds: this.$store.getters.funds,
                     stockPortfolio: this.$store.getters.stockPortfolio,
-                    stocks: this.$store.getters.getAllStocks.stocks,
+                    stocks: this.$store.getters.getAllStocks,
                 }
 
                 this.$http.put('data.json', data)
+                this.isDropdownOpen = false
+            },
+
+            loadData() {
+                this.fetchData()
+                this.isDropdownOpen = false
             },
         },
     }
