@@ -16,9 +16,10 @@
                 <strong class="navbar-text navbar-right">Funds: {{ funds | currency }}</strong>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#" @click="endDay">End Day</a></li>
-                    <li class="dropdown">
-                        <a aria-expanded="false"
+                    <li><a @click="endDay" href="#">End Day</a></li>
+                    <li :class="{ open: isDropdownOpen }" class="dropdown">
+                        <a @click="isDropdownOpen = !isDropdownOpen"
+                           aria-expanded="false"
                            aria-haspopup="true"
                            class="dropdown-toggle"
                            data-toggle="dropdown"
@@ -44,7 +45,9 @@
         name: 'Header',
 
         data() {
-            return {}
+            return {
+                isDropdownOpen: false,
+            }
         },
 
         computed: {
